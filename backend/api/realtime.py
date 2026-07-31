@@ -6,6 +6,7 @@ from backend.core.config import (
     OPENAI_API_KEY,
     REALTIME_MODEL,
     REALTIME_VOICE,
+    TRANSCRIPTION_LANGUAGE,
     TRANSCRIPTION_MODEL,
 )
 
@@ -75,7 +76,7 @@ def create_realtime_session():
                 "tools": REALTIME_TOOLS,
                 "tool_choice": "auto",
                 "audio": {
-                    "input": {"transcription": {"model": TRANSCRIPTION_MODEL}},
+                    "input": {"transcription": {"model": TRANSCRIPTION_MODEL, "language": TRANSCRIPTION_LANGUAGE}},
                     "output": {"voice": REALTIME_VOICE},
                 },
             }
