@@ -83,7 +83,7 @@ is only true if you implement it naively. Modern systems optimize every stage.
 
 ### What a production-grade modular pipeline actually looks like
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   User speaks  ↓  Streaming STT (Deepgram, Gladia, Speechmatics, Google, AssemblyAI)  ↓  Partial transcripts every 100-300ms  ↓  LLM starts reasoning before user finishes speaking  ↓  Tool calls execute in parallel  ↓  Streaming TTS (ElevenLabs, Cartesia, OpenAI TTS, Azure)  ↓  Audio streamed back immediately   `
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   User speaks  ↓  Streaming STT (Deepgram, Gladia, Speechmatics, Google, AssemblyAI, OpenAI gpt-4o-transcribe)  ↓  Partial transcripts every 100-300ms  ↓  LLM starts reasoning before user finishes speaking  ↓  Tool calls execute in parallel  ↓  Streaming TTS (ElevenLabs, Cartesia, OpenAI TTS, Azure)  ↓  Audio streamed back immediately   `
 
 ### The five key optimizations
 

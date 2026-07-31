@@ -31,7 +31,7 @@ The talking points and agenda are split across three notebooks in
 | Notebook | Covers | Agenda slot |
 |---|---|---|
 | [`01_basic_stt_tts.ipynb`](notebook/01_basic_stt_tts.ipynb) | Why voice AI, the naive STT→LLM→TTS pipeline run live on a real mic recording, timed | 0–20 min |
-| [`02_optimized_streaming.ipynb`](notebook/02_optimized_streaming.ipynb) | Why the naive pipeline is slow, streaming LLM + streaming TTS demoed live, the 5 production optimizations, Modular vs Unified architecture comparison | 20–35 min |
+| [`02_optimized_streaming.ipynb`](notebook/02_optimized_streaming.ipynb) | Why the naive pipeline is slow, streaming STT (`gpt-4o-transcribe`) → streaming LLM → streaming TTS demoed live end-to-end, the 5 production optimizations, Modular vs Unified architecture comparison | 20–35 min |
 | [`03_gpt_realtime.ipynb`](notebook/03_gpt_realtime.ipynb) | Realtime session/event model, hands-off to the browser app, tool calling via a direct `/tools/call` request, prompt engineering, Q&A | 35–120 min |
 
 `01_basic_stt_tts.ipynb`'s first code cell defines two reusable helpers used
@@ -56,7 +56,8 @@ to run through on the day:
    hold if implemented naively.
 3. **Production reality: modular vs unified** (20–35 min, `02_optimized_streaming.ipynb`)
    — how production voice AI companies actually solve latency (streaming
-   LLM/TTS demoed live; streaming STT and parallel tool calls explained), then
+   STT/LLM/TTS chained live end-to-end on a real mic recording; parallel
+   tool calls and VAD explained), then
    present Modular Stack vs Realtime as two valid architectures with real
    trade-offs, not "realtime always wins."
 4. **Realtime API concepts & event model** (35–50 min, `03_gpt_realtime.ipynb`)
