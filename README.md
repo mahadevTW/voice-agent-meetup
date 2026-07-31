@@ -31,7 +31,7 @@ The talking points and agenda are split across three notebooks in
 | Notebook | Covers | Agenda slot |
 |---|---|---|
 | [`01_basic_stt_tts.ipynb`](notebook/01_basic_stt_tts.ipynb) | Why voice AI, the naive STT→LLM→TTS pipeline run live on a real mic recording, timed | 0–20 min |
-| [`02_optimized_streaming.ipynb`](notebook/02_optimized_streaming.ipynb) | Why the naive pipeline is slow; live streaming STT with real VAD turn-detection (`gpt-4o-transcribe` over the Realtime API) → streaming LLM → streaming TTS chained live end-to-end, skipping the LLM call entirely on silence; the 5 production optimizations; Modular vs Unified architecture comparison | 20–35 min |
+| [`02_optimized_streaming.ipynb`](notebook/02_optimized_streaming.ipynb) | Why the naive pipeline is slow; live streaming STT with real VAD turn-detection (`gpt-4o-transcribe` over the Realtime API) → streaming LLM → streaming TTS, first shown stage-by-stage then wired into an actual multi-turn `voice_loop()` that listens → responds → listens again, skipping the LLM/TTS call entirely on silence; the 5 production optimizations; Modular vs Unified architecture comparison | 20–35 min |
 | [`03_gpt_realtime.ipynb`](notebook/03_gpt_realtime.ipynb) | Realtime session/event model, hands-off to the browser app, tool calling via a direct `/tools/call` request, prompt engineering, Q&A | 35–120 min |
 
 `01_basic_stt_tts.ipynb`'s first code cell defines two reusable helpers used
