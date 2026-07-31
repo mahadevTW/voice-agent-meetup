@@ -31,9 +31,9 @@ pipeline run end-to-end on a real mic recording, the realtime event list, a
 direct `/tools/call` request). Walk through it, then switch to the browser at
 the "Live Demo Break" section for the actual end-to-end voice demo.
 
-`notebook/voice_utils.py` has two reusable helpers used throughout the
-notebook: `record_audio(filename, duration)` records from the mic to a WAV
-file, `play_audio(filename)` plays a WAV file through the speakers. Both use
+The notebook's first code cell defines two reusable helpers used throughout:
+`record_audio(filename, duration)` records from the mic to a WAV file,
+`play_audio(filename)` plays a WAV file through the speakers. Both use
 `sounddevice`/`soundfile` — grant terminal/Jupyter microphone access when the
 OS prompts.
 
