@@ -23,6 +23,18 @@ uvicorn backend.main:app --reload
 
 Open http://localhost:8000 and click "Start talking".
 
+## Presenting the workshop
+
+`notebook/voice_ai_meetup.ipynb` carries the talking points and agenda for the
+full 2-hour session, plus small live-code snippets (a traditional STT→LLM→TTS
+pipeline run end-to-end, the realtime event list, a direct `/tools/call`
+request). Walk through it, then switch to the browser at the "Live Demo
+Break" section for the actual end-to-end voice demo.
+
+```bash
+jupyter notebook notebook/voice_ai_meetup.ipynb
+```
+
 ## Layout
 
 ```
