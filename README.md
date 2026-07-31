@@ -25,20 +25,23 @@ Open http://localhost:8000 and click "Start talking".
 
 ## Presenting the workshop
 
-`notebook/voice_ai_meetup.ipynb` carries the talking points and agenda for the
-full 2-hour session, plus small live-code snippets (a traditional STT→LLM→TTS
-pipeline run end-to-end on a real mic recording, the realtime event list, a
-direct `/tools/call` request). Walk through it, then switch to the browser at
-the "Live Demo Break" section for the actual end-to-end voice demo.
+The talking points and agenda are split across three notebooks in
+`notebook/`, run in order — each one ends by handing off to the next:
 
-The notebook's first code cell defines two reusable helpers used throughout:
-`record_audio(filename, duration)` records from the mic to a WAV file,
-`play_audio(filename)` plays a WAV file through the speakers. Both use
-`sounddevice`/`soundfile` — grant terminal/Jupyter microphone access when the
-OS prompts.
+| Notebook | Covers | Agenda slot |
+|---|---|---|
+| [`01_basic_stt_tts.ipynb`](notebook/01_basic_stt_tts.ipynb) | Why voice AI, the naive STT→LLM→TTS pipeline run live on a real mic recording, timed | 0–20 min |
+| [`02_optimized_streaming.ipynb`](notebook/02_optimized_streaming.ipynb) | Why the naive pipeline is slow, streaming LLM + streaming TTS demoed live, the 5 production optimizations, Modular vs Unified architecture comparison | 20–35 min |
+| [`03_gpt_realtime.ipynb`](notebook/03_gpt_realtime.ipynb) | Realtime session/event model, hands-off to the browser app, tool calling via a direct `/tools/call` request, prompt engineering, Q&A | 35–120 min |
+
+`01_basic_stt_tts.ipynb`'s first code cell defines two reusable helpers used
+in that notebook: `record_audio(filename, duration)` records from the mic to
+a WAV file, `play_audio(filename)` plays a WAV file through the speakers.
+Both use `sounddevice`/`soundfile` — grant terminal/Jupyter microphone access
+when the OS prompts.
 
 ```bash
-jupyter notebook notebook/voice_ai_meetup.ipynb
+jupyter notebook notebook/01_basic_stt_tts.ipynb
 ```
 
 ### Workshop sequence
@@ -46,26 +49,27 @@ jupyter notebook notebook/voice_ai_meetup.ipynb
 Full detail lives in [`voice-agent.md`](./voice-agent.md); this is the order
 to run through on the day:
 
-1. **Why Voice AI** (0–10 min) — the interface-shift narrative, then ask the
-   room "why is voice harder than chat?"
-2. **Traditional pipeline — naive version** (10–20 min) — STT → LLM → TTS,
-   run live in the notebook on a real mic recording, timed. Drawbacks only
+1. **Why Voice AI** (0–10 min, `01_basic_stt_tts.ipynb`) — the interface-shift
+   narrative, then ask the room "why is voice harder than chat?"
+2. **Traditional pipeline — naive version** (10–20 min, `01_basic_stt_tts.ipynb`)
+   — STT → LLM → TTS, run live on a real mic recording, timed. Drawbacks only
    hold if implemented naively.
-3. **Production reality: modular vs unified** (20–35 min) — how production
-   voice AI companies actually solve latency (streaming STT/LLM/TTS, parallel
-   tool calls, VAD), then present Modular Stack vs Realtime as two valid
-   architectures with real trade-offs, not "realtime always wins."
-4. **Realtime API concepts & event model** (35–50 min) — session, events,
-   audio chunks, conversation state, streaming responses.
+3. **Production reality: modular vs unified** (20–35 min, `02_optimized_streaming.ipynb`)
+   — how production voice AI companies actually solve latency (streaming
+   LLM/TTS demoed live; streaming STT and parallel tool calls explained), then
+   present Modular Stack vs Realtime as two valid architectures with real
+   trade-offs, not "realtime always wins."
+4. **Realtime API concepts & event model** (35–50 min, `03_gpt_realtime.ipynb`)
+   — session, events, audio chunks, conversation state, streaming responses.
 5. **Live demo break — hands-on** (50–90 min) — switch to this repo's browser
    app (`uvicorn backend.main:app --reload`), build up session → connect →
    mic → send/receive audio → playback, step by step.
-6. **Tool calling** (90–110 min) — walk through `get_weather` /
-   `calculate` / `get_order_status`, then call `/tools/call` directly from
-   the notebook against the running server.
-7. **Prompt engineering, advanced features, Q&A** (110–120 min) — voice
-   prompting rules, a mention-only pass over VAD/interruptions/multi-language,
-   then the closing end-to-end demo flow.
+6. **Tool calling** (90–110 min, `03_gpt_realtime.ipynb`) — walk through
+   `get_weather` / `calculate` / `get_order_status`, then call `/tools/call`
+   directly from the notebook against the running server.
+7. **Prompt engineering, advanced features, Q&A** (110–120 min, `03_gpt_realtime.ipynb`)
+   — voice prompting rules, a mention-only pass over
+   VAD/interruptions/multi-language, then the closing end-to-end demo flow.
 
 ## Layout
 
