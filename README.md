@@ -32,7 +32,7 @@ The talking points and agenda are split across three notebooks in
 |---|---|---|
 | [`01_basic_stt_tts.ipynb`](notebook/01_basic_stt_tts.ipynb) | Why voice AI, the naive STT→LLM→TTS pipeline run live on a real mic recording, timed | 0–20 min |
 | [`02_optimized_streaming.ipynb`](notebook/02_optimized_streaming.ipynb) | Why the naive pipeline is slow; live streaming STT with real VAD turn-detection (`gpt-4o-transcribe` over the Realtime API) → streaming LLM → streaming TTS, first shown stage-by-stage then wired into an actual multi-turn `voice_loop()` that listens → responds → listens again, skipping the LLM/TTS call entirely on silence; the 5 production optimizations; Modular vs Unified architecture comparison | 20–35 min |
-| [`03_gpt_realtime.ipynb`](notebook/03_gpt_realtime.ipynb) | Realtime session/event model, hands-off to the browser app, tool calling via a direct `/tools/call` request, prompt engineering, Q&A | 35–120 min |
+| [`03_gpt_realtime.ipynb`](notebook/03_gpt_realtime.ipynb) | Realtime session/event model with the actual `backend/api/realtime.py` contract printed and explained field-by-field; hands-off to the browser app; the browser-side tool-call callback (`handleRealtimeEvent`/`runToolCall` from `app.js`) shown alongside a direct `/tools/call` request; prompt engineering, Q&A | 35–120 min |
 
 `01_basic_stt_tts.ipynb`'s first code cell defines two reusable helpers used
 in that notebook: `record_audio(filename, duration)` records from the mic to
@@ -62,13 +62,18 @@ to run through on the day:
    TTS. Then present Modular Stack vs Realtime as two valid architectures
    with real trade-offs, not "realtime always wins."
 4. **Realtime API concepts & event model** (35–50 min, `03_gpt_realtime.ipynb`)
-   — session, events, audio chunks, conversation state, streaming responses.
+   — session, events, audio chunks, conversation state, streaming responses;
+   the notebook prints `backend/api/realtime.py` itself so the OpenAI session
+   contract (`type`, `model`, `instructions`, `tools`, `audio.input`/`output`)
+   is read from the real code, not a slide.
 5. **Live demo break — hands-on** (50–90 min) — switch to this repo's browser
    app (`uvicorn backend.main:app --reload`), build up session → connect →
    mic → send/receive audio → playback, step by step.
-6. **Tool calling** (90–110 min, `03_gpt_realtime.ipynb`) — walk through
-   `get_weather` / `calculate` / `get_order_status`, then call `/tools/call`
-   directly from the notebook against the running server.
+6. **Tool calling** (90–110 min, `03_gpt_realtime.ipynb`) — the notebook
+   prints `handleRealtimeEvent`/`runToolCall` from `backend/static/app.js` to
+   show exactly which browser callback turns a `function_call` event into an
+   HTTP request, and `backend/api/tools.py` on the receiving end, then calls
+   `/tools/call` directly from the notebook against the running server.
 7. **Prompt engineering, advanced features, Q&A** (110–120 min, `03_gpt_realtime.ipynb`)
    — voice prompting rules, a mention-only pass over
    VAD/interruptions/multi-language, then the closing end-to-end demo flow.
