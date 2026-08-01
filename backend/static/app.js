@@ -26,6 +26,15 @@ const TOOL_LABELS = {
   get_weather: "Checking the weather",
   calculate: "Doing the math",
   get_order_status: "Checking order status",
+  list_categories: "Listing categories",
+  search_items: "Searching products",
+  get_item_details: "Looking up product details",
+  add_to_cart: "Adding to cart",
+  view_cart: "Checking your cart",
+  place_order: "Placing your order",
+  get_order_history: "Fetching order history",
+  get_order_details: "Looking up your order",
+  get_policy_info: "Checking support policy",
 };
 
 function toolLabel(name) {
